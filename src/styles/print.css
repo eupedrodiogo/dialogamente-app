@@ -1,0 +1,581 @@
+@media print {
+  /* ==================== CONFIGURAÇÃO BÁSICA ==================== */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  body {
+    background: white !important;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* Ocultar elementos desnecessários */
+  button,
+  .no-print,
+  nav,
+  header:not(.print-header),
+  .animate-float,
+  .absolute:not(.print-keep),
+  a[href="/"],
+  /* Ocultar especificamente o botão Voltar ao Início */
+  button[class*="ghost"],
+  .container > button:first-of-type {
+    display: none !important;
+  }
+
+  /* ==================== ESTRUTURA DA PÁGINA ==================== */
+  @page {
+    margin: 2cm 1.5cm;
+    size: A4;
+  }
+
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .min-h-screen {
+    min-height: auto !important;
+    background: white !important;
+  }
+
+  /* ==================== CAPA / HEADER PRINCIPAL ==================== */
+  /* Card principal com gradiente decorativo */
+  .backdrop-blur-xl.bg-gradient-to-br {
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%) !important;
+    backdrop-filter: none !important;
+    border: 2px solid #9333ea !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 40px rgba(147, 51, 234, 0.15) !important;
+    padding: 24px !important;
+    margin-bottom: 20px !important;
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  /* Adicionar decoração de círculos no topo */
+  .backdrop-blur-xl.bg-gradient-to-br::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ec4899 0%, #06b6d4 100%);
+    border-radius: 50%;
+    opacity: 0.3;
+  }
+
+  .backdrop-blur-xl.bg-gradient-to-br::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 30px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+    border-radius: 50%;
+    opacity: 0.2;
+  }
+
+  /* ==================== ÍCONE DO PERFIL ==================== */
+  .relative.group {
+    margin: 0 auto 20px !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .relative.group > div:first-child {
+    display: none; /* esconde o blur */
+  }
+
+  .relative.group .backdrop-blur-xl {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%) !important;
+    border: 3px solid #9333ea !important;
+    padding: 20px !important;
+    border-radius: 24px !important;
+    box-shadow: 0 8px 24px rgba(147, 51, 234, 0.2) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ==================== TÍTULOS E TEXTOS ==================== */
+  /* Título "Seu Resultado" */
+  .text-4xl.font-display.font-bold,
+  .md\\:text-5xl.font-display.font-bold {
+    background: linear-gradient(90deg, #9333ea 0%, #ec4899 50%, #06b6d4 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-size: 38px !important;
+    margin: 12px 0 !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+  }
+
+  /* Data */
+  .text-lg {
+    font-size: 12px !important;
+    color: #64748b !important;
+    margin: 8px 0 !important;
+    text-align: center !important;
+  }
+
+  /* ==================== BADGE DO PERFIL PREDOMINANTE ==================== */
+  .text-center.p-8 {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 50%, #fef3ff 100%) !important;
+    border: 3px solid #9333ea !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    margin: 20px 0 !important;
+    page-break-inside: avoid !important;
+    box-shadow: 0 8px 32px rgba(147, 51, 234, 0.15) !important;
+    position: relative !important;
+  }
+
+  .text-center.p-8::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #9333ea 0%, #ec4899 50%, #06b6d4 100%);
+    border-radius: 16px 16px 0 0;
+  }
+
+  .font-display.font-semibold.mb-3 {
+    font-size: 14px !important;
+    color: #6b21a8 !important;
+    margin-bottom: 10px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+  }
+
+  /* Nome do perfil */
+  .text-5xl.font-display.font-bold,
+  .md\\:text-6xl.font-display.font-bold {
+    background: linear-gradient(135deg, #9333ea 0%, #c026d3 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-size: 48px !important;
+    margin: 12px 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    font-weight: 800 !important;
+  }
+
+  /* Badge de percentual */
+  .inline-flex.items-center.gap-2 {
+    background: white !important;
+    padding: 14px 24px !important;
+    border-radius: 30px !important;
+    border: 2px solid #9333ea !important;
+    display: inline-flex !important;
+    box-shadow: 0 4px 12px rgba(147, 51, 234, 0.15) !important;
+  }
+
+  .inline-flex .text-3xl {
+    font-size: 32px !important;
+    color: #9333ea !important;
+    font-weight: 800 !important;
+  }
+
+  .inline-flex .text-sm {
+    font-size: 12px !important;
+    color: #64748b !important;
+  }
+
+  /* ==================== SEÇÕES DE CONTEÚDO ==================== */
+  .space-y-4,
+  .space-y-8 {
+    margin: 18px 0 !important;
+  }
+
+  /* Forçar quebra de página antes da Pontuação Detalhada */
+  .space-y-8 > div:nth-child(3) {
+    page-break-before: always !important;
+    padding-top: 20px !important;
+  }
+
+  /* Títulos de seção com ícones */
+  .text-2xl.font-display.font-semibold {
+    font-size: 20px !important;
+    color: #9333ea !important;
+    font-weight: 700 !important;
+    margin: 18px 0 10px 0 !important;
+    padding: 12px 15px !important;
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%) !important;
+    border-left: 5px solid #9333ea !important;
+    border-radius: 8px !important;
+    page-break-after: avoid !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  /* Descrição do perfil */
+  .text-lg.text-muted-foreground.leading-relaxed {
+    font-size: 13px !important;
+    line-height: 1.7 !important;
+    color: #475569 !important;
+    text-align: justify !important;
+    padding: 16px !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    border-radius: 10px !important;
+    border-left: 4px solid #9333ea !important;
+    margin: 10px 0 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* ==================== SCORES / BARRAS DE PROGRESSO ==================== */
+  .space-y-4 > .space-y-2 {
+    margin: 12px 0 !important;
+    padding: 14px !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    border-radius: 10px !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+
+  .flex.justify-between.items-center {
+    margin-bottom: 8px !important;
+  }
+
+  .flex.items-center.gap-2 {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+  }
+
+  .text-muted-foreground.font-medium {
+    font-size: 13px !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+  }
+
+  /* Barra de progresso estilizada */
+  .relative.h-3.bg-gray-200 {
+    height: 14px !important;
+    background: #e2e8f0 !important;
+    border-radius: 7px !important;
+    overflow: hidden !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #cbd5e1 !important;
+  }
+
+  .relative.h-3 .absolute {
+    display: block !important;
+    height: 14px !important;
+    background: linear-gradient(90deg, #9333ea 0%, #c026d3 50%, #ec4899 100%) !important;
+    border-radius: 7px !important;
+    box-shadow: 0 0 8px rgba(147, 51, 234, 0.4) !important;
+  }
+
+  /* ==================== PONTOS FORTES ==================== */
+  .strengths-section {
+    page-break-inside: avoid !important;
+    margin: 18px 0 !important;
+  }
+
+  .strengths-list {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+    padding: 16px 18px !important;
+    border-radius: 10px !important;
+    border-left: 5px solid #22c55e !important;
+    border: 2px solid #bbf7d0 !important;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.1) !important;
+  }
+
+  .strength-item {
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+    color: #166534 !important;
+    margin: 8px 0 !important;
+    padding-left: 10px !important;
+    font-weight: 500 !important;
+  }
+
+  .strength-item::before {
+    content: '✓ ';
+    color: #22c55e;
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  /* ==================== PONTOS FRACOS ==================== */
+  .weaknesses-section {
+    page-break-inside: avoid !important;
+    margin: 18px 0 !important;
+  }
+
+  .weaknesses-list {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%) !important;
+    padding: 16px 18px !important;
+    border-radius: 10px !important;
+    border-left: 5px solid #ef4444 !important;
+    border: 2px solid #fecaca !important;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1) !important;
+  }
+
+  .weakness-item {
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+    color: #991b1b !important;
+    margin: 8px 0 !important;
+    padding-left: 10px !important;
+    font-weight: 500 !important;
+  }
+
+  .weakness-item::before {
+    content: '⚠ ';
+    color: #ef4444;
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  /* ==================== SEÇÃO DE DICAS ==================== */
+  .tips-section {
+    page-break-before: always !important;
+    margin-top: 0 !important;
+    padding-top: 20px !important;
+  }
+
+  .tips-section .text-2xl.font-display.font-semibold {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%) !important;
+    border: 2px solid #9333ea !important;
+    padding: 14px 18px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .tips-section .grid {
+    margin-top: 12px !important;
+    display: grid !important;
+    gap: 8px !important;
+  }
+
+  .tip-item {
+    padding: 10px 12px !important;
+    margin: 0 !important;
+    background: linear-gradient(135deg, #fefbff 0%, #faf5ff 100%) !important;
+    border: 1.5px solid #e9d5ff !important;
+    border-left: 4px solid #9333ea !important;
+    border-radius: 8px !important;
+    page-break-inside: avoid !important;
+    display: flex !important;
+    align-items: start !important;
+    box-shadow: 0 2px 6px rgba(147, 51, 234, 0.08) !important;
+  }
+
+  .tip-item::before {
+    content: '✓';
+    color: #9333ea;
+    font-weight: 800;
+    font-size: 16px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .tip-item .w-6 {
+    display: none !important;
+  }
+
+  .tip-item p {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+    color: #475569 !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+  }
+
+  /* ==================== ÍCONES ==================== */
+  svg {
+    width: 18px !important;
+    height: 18px !important;
+    color: #9333ea !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+  }
+
+  /* ==================== QUEBRA DE PÁGINA ==================== */
+  /* Evitar quebra após as duas primeiras seções */
+  .space-y-8 > div:nth-child(1),
+  .space-y-8 > div:nth-child(2) {
+    page-break-after: avoid !important;
+  }
+
+  /* Pontuação detalhada inicia na página 2 */
+  .space-y-8 > div:nth-child(3) {
+    page-break-before: always !important;
+    page-break-after: avoid !important;
+  }
+
+  /* ==================== FOOTER COM CRÉDITOS - DESIGN SOFISTICADO ==================== */
+  footer:not(.no-print) {
+    display: block !important;
+    margin-top: 50px !important;
+    page-break-inside: avoid !important;
+    page-break-before: avoid !important;
+  }
+
+  footer .relative.inline-block {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  footer .absolute {
+    display: none !important;
+  }
+
+  footer .backdrop-blur-xl {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 50%, #faf5ff 100%) !important;
+    border: 3px solid #9333ea !important;
+    border-radius: 16px !important;
+    padding: 28px 40px !important;
+    box-shadow: 0 8px 32px rgba(147, 51, 234, 0.25) !important;
+    backdrop-filter: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Barra decorativa superior */
+  footer .backdrop-blur-xl::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #9333ea 0%, #ec4899 50%, #06b6d4 100%);
+  }
+
+  /* Padrão geométrico de fundo */
+  footer .backdrop-blur-xl::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -5%;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(147, 51, 234, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  footer h3 {
+    background: linear-gradient(135deg, #581c87 0%, #7e22ce 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    letter-spacing: 1px !important;
+    margin-bottom: 8px !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  footer .text-sm {
+    color: #6b21a8 !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 12px !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  footer .flex.items-center {
+    border-top: 2px solid rgba(147, 51, 234, 0.2) !important;
+    padding-top: 12px !important;
+    margin-top: 4px !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  footer .text-xs {
+    color: #581c87 !important;
+    font-size: 9px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px !important;
+    opacity: 1 !important;
+  }
+
+  footer .w-2 {
+    display: none !important;
+  }
+
+  /* ==================== OTIMIZAÇÕES GERAIS ==================== */
+  .py-12,
+  .py-8,
+  .py-6 {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .mb-6,
+  .mb-8,
+  .mb-12 {
+    margin-bottom: 14px !important;
+  }
+
+  .mt-6,
+  .mt-8,
+  .mt-12 {
+    margin-top: 14px !important;
+  }
+
+  .space-y-6,
+  .space-y-8 {
+    gap: 12px !important;
+  }
+
+  /* Remover animações */
+  .animate-scale-in,
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-slide-in,
+  .animate-glow,
+  .animate-float {
+    animation: none !important;
+  }
+
+  /* Garantir legibilidade */
+  * {
+    text-shadow: none !important;
+  }
+
+  /* Evitar quebras ruins */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  p, li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* ==================== MARCA D'ÁGUA SUTIL ==================== */
+  body::before {
+    content: 'ComunicaPro';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 140px;
+    color: rgba(147, 51, 234, 0.025);
+    font-weight: 800;
+    z-index: -1;
+    pointer-events: none;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 10px;
+  }
+}

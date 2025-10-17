@@ -1,0 +1,17 @@
+{
+  "name": "DialogaMente - Comunique-se Conscientemente",
+  "short_name": "DialogaMente",
+  "description": "Descubra seu perfil comunicativo e desenvolva uma comunicação mais consciente e eficaz",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#9333EA",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ]
+}
