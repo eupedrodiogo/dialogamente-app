@@ -7,9 +7,8 @@ Para fazer o deploy da aplicação, você precisa configurar as seguintes variá
 ### Variáveis Obrigatórias:
 
 ```
-VITE_SUPABASE_PROJECT_ID=sjyellllnsxkebukmoxi
-VITE_SUPABASE_PUBLISHABLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqeWVsbGxsbnN4a2VidWttb3hpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1NTM5NzksImV4cCI6MjA3NjEyOTk3OX0.W40qne_M7gxnJVckPIc-te9sD7Ks_hxe-8Vp3X66sIg
 VITE_SUPABASE_URL=https://sjyellllnsxkebukmoxi.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=[sua-chave-anon]
 ```
 
 ## Deploy no Vercel

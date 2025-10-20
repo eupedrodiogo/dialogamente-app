@@ -148,7 +148,7 @@ Crie um arquivo `.env` na raiz do projeto:
 
 ```env
 VITE_SUPABASE_URL=https://sjyellllnsxkebukmoxi.supabase.co
-VITE_SUPABASE_ANON_KEY=sua_chave_aqui
+VITE_SUPABASE_PUBLISHABLE_KEY=sua_chave_anon
 ```
 
 ### Supabase
