@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="DialogaMente Logo">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6D28D9"/>
+      <stop offset="50%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#0EA5E9"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#000" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Chat bubble -->
+  <g filter="url(#shadow)">
+    <path d="M192 208c0-53 43-96 96-96h448c53 0 96 43 96 96v416c0 53-43 96-96 96H544l160 112v-112h32c53 0 96-43 96-96V208c0-53-43-96-96-96H288c-53 0-96 43-96 96v416c0 53 43 96 96 96h128c-160 0-224-43-224-96V208z" fill="url(#grad)" />
+  </g>
+
+  <!-- Stylized brain mark -->
+  <g>
+    <!-- Outer blob with subtle outline for contrast -->
+    <path d="M352 392c-64 0-116 52-116 116s52 116 116 116h64c-6-14-9-29-9-45 0-54 44-98 98-98s98 44 98 98c0 16-3 31-9 45h64c64 0 116-52 116-116s-52-116-116-116H352z" fill="#FFFFFF" opacity="0.96" stroke="#0F172A" stroke-opacity="0.15" stroke-width="12" stroke-linejoin="round"/>
+    <!-- Mid separator -->
+    <path d="M512 380v264" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" opacity="0.98"/>
+    <!-- Left curves -->
+    <path d="M470 430c-34 14-54 40-54 76m-8 66c12 10 28 17 46 20" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" fill="none" opacity="0.95"/>
+    <!-- Right curves -->
+    <path d="M554 430c34 14 54 40 54 76m8 66c-12 10-28 17-46 20" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" fill="none" opacity="0.95"/>
+  </g>
+</svg>

@@ -207,85 +207,141 @@ const Pricing = () => {
           </Card>
 
           {/* Promo Plan */}
-          <Card className="p-8 relative border-2 border-purple-500 shadow-2xl scale-105">
+          <Card className="p-8 relative border-2 border-purple-500 shadow-2xl scale-105 overflow-hidden">
+            {/* Overlay sutil para indicar disponibilidade em breve */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-50/20 via-pink-50/10 to-blue-50/20 dark:from-purple-900/5 dark:via-pink-900/5 dark:to-blue-900/5"></div>
+            
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-bold rounded-full">
               MAIS POPULAR
             </div>
-            <h3 className="text-2xl font-bold mb-2">PRO - Lançamento</h3>
-            <div className="mb-6">
-              <span className="text-4xl font-bold">R$ 9,90</span>
-              <span className="text-muted-foreground">/mês</span>
-              <div className="text-sm text-muted-foreground mt-1">
-                Preço promocional por tempo limitado
+
+            {/* Badge "Lançamento em breve" */}
+            <div className="absolute top-6 right-6 px-3 py-1.5 bg-gradient-to-r from-orange-100 to-yellow-100 dark:from-orange-900/50 dark:to-yellow-900/50 border border-orange-200 dark:border-orange-700 rounded-full shadow-sm">
+              <div className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full animate-pulse"></div>
+                <span className="text-xs font-semibold text-orange-700 dark:text-orange-300">Lançamento em breve</span>
               </div>
             </div>
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-purple-500 mt-0.5" />
-                <span className="font-semibold">Tudo do plano gratuito</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-purple-500 mt-0.5" />
-                <span>Relatório PDF Premium (15-20 páginas)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-purple-500 mt-0.5" />
-                <span>Dashboard de evolução</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-purple-500 mt-0.5" />
-                <span>Histórico ilimitado</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-purple-500 mt-0.5" />
-                <span>Conteúdo exclusivo mensal</span>
-              </li>
-            </ul>
-            <Input
-              type="email"
-              placeholder="Seu melhor email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mb-3"
-            />
-            <Button 
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-              onClick={() => handleCheckout('price_1SIrQ53xydtdxuzbp2U7oXUt')}
-            >
-              Garantir Vaga - R$ 9,90/mês
-            </Button>
+
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold mb-2">PRO - Lançamento</h3>
+              <div className="mb-6">
+                <span className="text-4xl font-bold">R$ 9,90</span>
+                <span className="text-muted-foreground">/mês</span>
+                <div className="text-sm text-muted-foreground mt-1">
+                  Preço promocional por tempo limitado
+                </div>
+              </div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-purple-500 mt-0.5" />
+                  <span className="font-semibold">Tudo do plano gratuito</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-purple-500 mt-0.5" />
+                  <span>Relatório PDF Premium (15-20 páginas)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-purple-500 mt-0.5" />
+                  <span>Dashboard de evolução</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-purple-500 mt-0.5" />
+                  <span>Histórico ilimitado</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-purple-500 mt-0.5" />
+                  <span>Conteúdo exclusivo mensal</span>
+                </li>
+              </ul>
+
+              {/* Mensagem de disponibilidade em breve */}
+              <div className="mb-4 p-4 bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 border border-orange-200 dark:border-orange-800 rounded-lg">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Sparkles className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                  <span className="font-semibold text-orange-700 dark:text-orange-300">Lançamento em breve</span>
+                </div>
+                <p className="text-sm text-center text-orange-600 dark:text-orange-400">
+                  Seja notificado quando esta oferta especial estiver disponível
+                </p>
+              </div>
+
+              <Input
+                type="email"
+                placeholder="Seu melhor email para ser notificado"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mb-3"
+              />
+              <Button 
+                variant="outline"
+                className="w-full border-orange-200 dark:border-orange-700 text-orange-600 dark:text-orange-400 hover:bg-orange-50 dark:hover:bg-orange-900/20"
+                disabled
+              >
+                <Lock className="w-4 h-4 mr-2" />
+                Notificar quando disponível
+              </Button>
+            </div>
           </Card>
 
           {/* Normal Plan */}
-          <Card className="p-8 relative opacity-75">
-            <div className="absolute top-4 right-4 px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs rounded-full">
-              Em breve
-            </div>
-            <h3 className="text-2xl font-bold mb-2">PRO - Normal</h3>
-            <div className="mb-6">
-              <span className="text-4xl font-bold">R$ 29,90</span>
-              <span className="text-muted-foreground">/mês</span>
-              <div className="text-sm text-muted-foreground mt-1">
-                Preço regular após promoção
+          <Card className="p-8 relative overflow-hidden">
+            {/* Overlay com gradiente sutil */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-pink-50/30 to-blue-50/50 dark:from-purple-900/10 dark:via-pink-900/10 dark:to-blue-900/10"></div>
+            
+            {/* Badge "Em breve" redesenhado */}
+            <div className="absolute top-6 right-6 px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/50 dark:to-pink-900/50 border border-purple-200 dark:border-purple-700 rounded-full shadow-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+                <span className="text-xs font-semibold text-purple-700 dark:text-purple-300">Em breve</span>
               </div>
             </div>
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-gray-400 mt-0.5" />
-                <span>Todos os benefícios PRO</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-gray-400 mt-0.5" />
-                <span>Suporte prioritário</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-gray-400 mt-0.5" />
-                <span>Acesso antecipado a novos recursos</span>
-              </li>
-            </ul>
-            <Button variant="outline" className="w-full" disabled>
-              Disponível em breve
-            </Button>
+
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold mb-2 text-gray-700 dark:text-gray-300">PRO - Normal</h3>
+              <div className="mb-6">
+                <span className="text-4xl font-bold text-gray-600 dark:text-gray-400">R$ 29,90</span>
+                <span className="text-muted-foreground">/mês</span>
+                <div className="text-sm text-muted-foreground mt-1">
+                  Preço regular após promoção
+                </div>
+              </div>
+              
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-gray-400 mt-0.5" />
+                  <span className="text-gray-600 dark:text-gray-400">Todos os benefícios PRO</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-gray-400 mt-0.5" />
+                  <span className="text-gray-600 dark:text-gray-400">Suporte prioritário</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-gray-400 mt-0.5" />
+                  <span className="text-gray-600 dark:text-gray-400">Acesso antecipado a novos recursos</span>
+                </li>
+              </ul>
+
+              {/* Mensagem "Estará disponível em breve" redesenhada */}
+              <div className="mb-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border border-purple-200 dark:border-purple-800 rounded-lg">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Sparkles className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                  <span className="font-semibold text-purple-700 dark:text-purple-300">Estará disponível em breve</span>
+                </div>
+                <p className="text-sm text-center text-purple-600 dark:text-purple-400">
+                  Aguarde o lançamento desta modalidade premium
+                </p>
+              </div>
+
+              <Button 
+                variant="outline" 
+                className="w-full border-purple-200 dark:border-purple-700 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20" 
+                disabled
+              >
+                <Lock className="w-4 h-4 mr-2" />
+                Disponível em breve
+              </Button>
+            </div>
           </Card>
         </div>
 

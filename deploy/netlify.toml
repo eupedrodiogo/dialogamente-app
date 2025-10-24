@@ -1,0 +1,119 @@
+# Configuração do Netlify para DialogaMente
+[build]
+  command = "npm run build"
+  publish = "dist"
+  
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps"
+  # Variáveis de ambiente do Supabase
+  VITE_SUPABASE_URL = "https://sjyellllnsxkebukmoxi.supabase.co"
+  VITE_SUPABASE_PUBLISHABLE_KEY = ""
+  # Configurações de build
+  VITE_APP_TITLE = "DialogaMente"
+  VITE_APP_DESCRIPTION = "Plataforma de comunicação e análise premium"
+
+# Configuração de redirects para SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Redirects específicos para páginas premium
+[[redirects]]
+  from = "/premium/*"
+  to = "/index.html"
+  status = 200
+
+# Redirects para páginas administrativas
+[[redirects]]
+  from = "/admin/*"
+  to = "/index.html"
+  status = 200
+
+# Headers de segurança
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://sjyellllnsxkebukmoxi.supabase.co https://api.stripe.com"
+
+# Cache para assets estáticos
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache para JavaScript
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache para CSS
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Content-Type = "text/css; charset=utf-8"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache para fontes
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+# Cache para imagens
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Configuração para PWA
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+    Cache-Control = "public, max-age=86400"
+
+# Configuração para service worker
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Content-Type = "application/javascript"
+    Cache-Control = "no-cache"
+
+# Configuração para robots.txt e sitemap
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+
+# Configuração de Edge Functions (se necessário)
+[functions]
+  directory = "netlify/functions"
+
+# Configuração de Forms (se necessário)
+[forms]
+  settings = { spam_protection = true }

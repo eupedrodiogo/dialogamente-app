@@ -1,0 +1,42 @@
+# Redirects para DialogaMente - Netlify
+
+# Redirect para HTTPS
+http://dialogamente.com.br/* https://dialogamente.com.br/:splat 301!
+http://www.dialogamente.com.br/* https://dialogamente.com.br/:splat 301!
+
+# Redirect www para non-www
+https://www.dialogamente.com.br/* https://dialogamente.com.br/:splat 301!
+
+# Redirects para páginas específicas (SEO friendly)
+/dashboard /premium/dashboard 301
+/relatorios /premium/relatorios 301
+/analytics /premium/analytics 301
+/suporte /premium/suporte-vip 301
+/api /premium/api-access 301
+/exportar /premium/exportacao 301
+/conteudo /premium/conteudo-exclusivo 301
+
+# Redirects para compatibilidade
+/login /entrar 301
+/signup /cadastro 301
+/pricing /precos 301
+/profile /perfil 301
+
+# Redirects para páginas administrativas (protegidas)
+/admin/* /admin/:splat 200
+
+# Redirects para páginas premium (protegidas)
+/premium/* /premium/:splat 200
+
+# API redirects
+/api/* https://sjyellllnsxkebukmoxi.supabase.co/rest/v1/:splat 200
+/auth/* https://sjyellllnsxkebukmoxi.supabase.co/auth/v1/:splat 200
+
+# Redirects para arquivos estáticos
+/favicon.ico /favicon.ico 200
+/robots.txt /robots.txt 200
+/sitemap.xml /sitemap.xml 200
+/manifest.json /manifest.json 200
+
+# Redirect para SPA (deve ser o último)
+/* /index.html 200

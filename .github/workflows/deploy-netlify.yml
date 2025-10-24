@@ -1,0 +1,108 @@
+name: Deploy to Netlify
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: 🟢 Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        
+    - name: 📦 Install dependencies
+      run: |
+        npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+        
+    - name: 🔍 Run linting
+      run: npm run lint
+      continue-on-error: true
+      
+    - name: 🏗️ Build application
+      run: npm run build
+      env:
+        NODE_ENV: production
+        
+    - name: 📋 Copy essential files
+      run: |
+        # Copiar arquivos essenciais da pasta deploy para dist
+        cp deploy/_headers dist/_headers 2>/dev/null || echo "⚠️ _headers não encontrado"
+        cp deploy/_redirects dist/_redirects 2>/dev/null || echo "⚠️ _redirects não encontrado"
+        cp deploy/robots.txt dist/robots.txt 2>/dev/null || echo "⚠️ robots.txt não encontrado"
+        cp deploy/sitemap.xml dist/sitemap.xml 2>/dev/null || echo "⚠️ sitemap.xml não encontrado"
+        cp deploy/manifest.json dist/manifest.json 2>/dev/null || echo "⚠️ manifest.json não encontrado"
+        
+    - name: 📊 Build analysis
+      run: |
+        echo "📁 Conteúdo da pasta dist:"
+        ls -la dist/
+        echo ""
+        echo "📏 Tamanho do build:"
+        du -sh dist/
+        echo ""
+        echo "🔍 Arquivos grandes (>500KB):"
+        find dist/ -type f -size +500k -exec ls -lh {} \; | awk '{print $5 " " $9}' || echo "Nenhum arquivo grande encontrado"
+        
+    - name: ✅ Verify critical files
+      run: |
+        # Verificar se arquivos críticos existem
+        test -f dist/index.html || (echo "❌ index.html não encontrado!" && exit 1)
+        echo "✅ Arquivos críticos verificados"
+        
+    - name: 🚀 Deploy to Netlify
+      uses: nwtgck/actions-netlify@v3.0
+      with:
+        publish-dir: './dist'
+        production-branch: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Deploy from GitHub Actions - ${{ github.event.head_commit.message }}"
+        enable-pull-request-comment: true
+        enable-commit-comment: true
+        overwrites-pull-request-comment: true
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      timeout-minutes: 10
+      
+    - name: 📝 Generate deployment report
+      if: always()
+      run: |
+        echo "# 📊 Relatório de Deploy - DialogaMente" > deployment-report.md
+        echo "" >> deployment-report.md
+        echo "**Data/Hora:** $(date)" >> deployment-report.md
+        echo "**Commit:** ${{ github.sha }}" >> deployment-report.md
+        echo "**Branch:** ${{ github.ref_name }}" >> deployment-report.md
+        echo "**Node.js:** ${{ matrix.node-version }}" >> deployment-report.md
+        echo "" >> deployment-report.md
+        echo "## 📁 Estrutura do Build" >> deployment-report.md
+        echo "\`\`\`" >> deployment-report.md
+        ls -la dist/ >> deployment-report.md
+        echo "\`\`\`" >> deployment-report.md
+        echo "" >> deployment-report.md
+        echo "## 📏 Tamanho Total" >> deployment-report.md
+        echo "\`\`\`" >> deployment-report.md
+        du -sh dist/ >> deployment-report.md
+        echo "\`\`\`" >> deployment-report.md
+        
+    - name: 📤 Upload deployment report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: deployment-report-node-${{ matrix.node-version }}
+        path: deployment-report.md
+        retention-days: 30

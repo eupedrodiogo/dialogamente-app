@@ -14,14 +14,7 @@
     "deploy": "gh-pages -d dist",
     "deploy:vercel": "vercel --prod",
     "deploy:netlify": "netlify deploy --prod",
-    "migrate:remove-ghpages": "node scripts/remove-ghpages-config.js",
-    "build:clean": "rimraf dist node_modules package-lock.json && npm install --legacy-peer-deps",
-    "build:deploy": "node deploy/build-deploy.js",
-    "build:deploy:skip-lint": "node deploy/build-deploy.js --skip-lint",
-    "build:deploy:clean": "node deploy/build-deploy.js --skip-clean",
-    "prebuild:deploy": "npm run build:clean",
-    "postbuild": "node -e \"console.log('\\n✅ Build concluído! Pasta: dist/')\"",
-    "copy:assets": "node -e \"const fs=require('fs'),path=require('path');['_headers','_redirects','robots.txt','sitemap.xml','manifest.json'].forEach(f=>{const src=path.join('deploy',f),dest=path.join('dist',f);if(fs.existsSync(src)){fs.copyFileSync(src,dest);console.log('Copiado:',f)}})\""
+    "migrate:remove-ghpages": "node scripts/remove-ghpages-config.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
