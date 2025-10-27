@@ -123,7 +123,7 @@ const Landing = () => {
             </h1>
             
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-display font-semibold text-foreground/90 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-              Comunique-se Conscientemente
+              Comunique-se Conscientemente!
             </h2>
             
             <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-up font-light" style={{ animationDelay: "0.2s" }}>
